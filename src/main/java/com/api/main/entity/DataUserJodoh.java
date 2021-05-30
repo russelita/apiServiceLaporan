@@ -14,19 +14,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="laporan")
-public class Laporan {
+@Table(name="userjodoh")
+public class DataUserJodoh {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
+	private String username;
 	private String name;
-	private String address;
-	private String keterangan;
-	private String status;
-	private String kejadian;
-	private String jam;
+	private String jenisKelamin;
+	private String phone;
+	private String umur;
 	private String image;
 	private String latitude;
 	private String longitude;

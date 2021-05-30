@@ -10,7 +10,7 @@ import com.api.main.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Long>{
 	@Query(value = "SELECT *\n"
-			+ "from user\n"
+			+ "from users\n"
 			+ "Where (CASE "
 			+ "WHEN 'name'=:type THEN name LIKE %:value% "
 			+ "WHEN 'password'=:type THEN password LIKE %:value% "			
@@ -19,5 +19,9 @@ public interface UserRepository extends JpaRepository<User, Long>{
 			+ "WHEN 'email'=:type THEN email LIKE %:value% "
 			+ "END)",nativeQuery=true)
 	List<User> findBySearchBy(@Param("type")String type,@Param("value")String value);
-	User findByPassword(String password); 
+	
+	@Query(value="SELECT * from users where name=?1 and password=?2",nativeQuery = true)
+	User findByLogin(String name, String password);
+	
+	User findByName(String name);
 }

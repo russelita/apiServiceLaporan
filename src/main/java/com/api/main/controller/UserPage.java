@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.main.entity.User;
@@ -28,13 +29,13 @@ public class UserPage {
 	
 	@PostMapping("/register")
 	public String addUser(@RequestBody User user){
-		this.userRepo.save(user);
+		userRepo.save(user);
 		return "insert berhasil";
 	}
 	
-	@GetMapping("/password/{value}")
-	public User getByPassword(@PathVariable("value") String value) {
-		return userRepo.findByPassword(value);
+	@GetMapping("/login")
+	public User loginUser(@RequestParam("name")String name, @RequestParam("password") String password) {
+		return userRepo.findByLogin(name, password);
 	}
 	
 	@DeleteMapping("/delete/{id}")
